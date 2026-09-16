@@ -1,24 +1,19 @@
 import { NextResponse } from "next/server";
-import pool from "../../lib/db";
+import pool from "../../../lib/db";
 
 export async function GET() {
   try {
-    const result = await pool.query("SELECT NOW()");
+    const result = await pool.query(`
+      SELECT
+        current_database() AS database,
+        current_schema() AS schema,
+        current_user AS user
+    `);
 
-    return NextResponse.json({
-      success: true,
-      databaseConnected: true,
-      time: result.rows[0].now,
-    });
+    return NextResponse.json(result.rows[0]);
   } catch (error) {
-    console.error("DB CONNECTION ERROR:", error);
-
     return NextResponse.json(
-      {
-        success: false,
-        databaseConnected: false,
-        error: error.message,
-      },
+      { error: error.message },
       { status: 500 }
     );
   }
