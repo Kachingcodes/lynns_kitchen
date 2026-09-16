@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import pool from "../../../../../lib/db";
+import pool from "../../../../lib/db";
 
 export async function PATCH(request, { params }) {
   const client = await pool.connect();
@@ -32,6 +32,7 @@ export async function PATCH(request, { params }) {
       SELECT id, name
       FROM waiter
       WHERE id = $1
+        AND restaurant_id = 3
       `,
       [waiterId]
     );
@@ -54,6 +55,7 @@ export async function PATCH(request, { params }) {
 
       WHERE id = $2
         AND waiter_id IS NULL
+        AND restaurant_id = 3
 
       RETURNING
         id,
