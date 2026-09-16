@@ -6,12 +6,7 @@ export async function GET(request) {
     const { searchParams } = new URL(request.url);
     const restaurantId = searchParams.get("restaurantId");
 
-    if (!restaurantId) {
-      return NextResponse.json(
-        { error: "Restaurant ID is required" },
-        { status: 400 }
-      );
-    }
+    console.log("Restaurant ID:", restaurantId);
 
     const result = await pool.query(
       `
@@ -34,12 +29,17 @@ export async function GET(request) {
       [restaurantId]
     );
 
+    console.log("MENU ROWS:", result.rows.length);
+
     return NextResponse.json(result.rows);
   } catch (error) {
-    console.error("Error fetching menu:", error);
+    console.error("MENU DATABASE ERROR:", error);
 
     return NextResponse.json(
-      { error: "Failed to fetch menu items" },
+      {
+        error: "Failed to fetch menu items",
+        details: error.message,
+      },
       { status: 500 }
     );
   }
