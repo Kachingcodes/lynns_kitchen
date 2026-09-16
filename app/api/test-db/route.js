@@ -4,16 +4,22 @@ import pool from "../../lib/db";
 export async function GET() {
   try {
     const result = await pool.query(`
-      SELECT
-        current_database() AS database,
-        current_schema() AS schema,
-        current_user AS user
+      SELECT COUNT(*) AS count
+      FROM public.menu_item
     `);
 
-    return NextResponse.json(result.rows[0]);
+    return NextResponse.json({
+      success: true,
+      menuItems: result.rows[0].count,
+    });
   } catch (error) {
+    console.error("TEST DB ERROR:", error);
+
     return NextResponse.json(
-      { error: error.message },
+      {
+        success: false,
+        error: error.message,
+      },
       { status: 500 }
     );
   }
