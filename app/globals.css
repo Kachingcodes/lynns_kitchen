@@ -1,26 +1,121 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Base */
+  --background: #f8f7f3;
+  --foreground: #1f2521;
+
+  /* Brand */
+  --primary: #0f5132;
+  --primary-foreground: #ffffff;
+
+  /* Secondary */
+  --secondary: #e8e2d6;
+  --secondary-foreground: #254234;
+
+  /* Muted */
+  --muted: #f1eee7;
+  --muted-foreground: #6f746d;
+
+  /* Cards */
+  --card: #ffffff;
+  --card-foreground: #1f2521;
+
+  /* Borders & Inputs */
+  --border: #dedbd2;
+  --input: #dedbd2;
+
+  /* Accent colors */
+  --gold: #c99a3d;
+  --gold-light: #e6c77d;
+
+  /* Status */
+  --success: #3f7a5a;
+  --warning: #c58a32;
+  --danger: #b84a43;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+
+  /* Fonts */
+  --font-sans: var(--font-manrope);
+  --font-heading: var(--font-cormorant);
   --font-mono: var(--font-geist-mono);
+  --font-logo: var(--font-logo);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-color: var(--border);
+}
+
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-manrope), Arial, Helvetica, sans-serif;
+}
+
+/* Hide scrollbars while keeping content scrollable */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* Food animation */
+@keyframes food-to-order {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  40% {
+    opacity: 1;
+    transform: translate(20px, -60px) scale(0.75);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(200px, -180px) scale(0.15);
+  }
+}
+
+.animate-food-to-order {
+  animation: food-to-order 700ms ease-in-out forwards;
 }
