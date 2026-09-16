@@ -109,7 +109,7 @@ export default function Home() {
 
               {/* Description */}
               <p className="mt-6 lg:max-w-md text-base leading-7 text-muted-foreground sm:mt-8 sm:text-lg sm:leading-8">
-                A modern dining experience where bold flavours, carefully
+                A modern dining experience where bold flavors, carefully
                 crafted dishes, and beautiful moments come together.
               </p>
 
