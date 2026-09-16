@@ -11,12 +11,12 @@ export default function Home() {
   return (
     <main className="min-h-screen overflow-hidden bg-background text-foreground">
 
-      <div className="grid min-h-screen lg:grid-cols-[1fr_1.05fr]">
+      <div className="grid min-h-screen grid-cols-1 lg:grid-cols-[1fr_1.05fr]">
 
         {/* =====================================================
             LEFT SIDE — BRAND & CONTENT
         ====================================================== */}
-        <div className="relative flex min-h-screen flex-col overflow-hidden px-6 sm:px-10 lg:px-16 xl:px-24">
+        <div className="relative z-10 flex min-h-screen flex-col overflow-hidden bg-background px-6 sm:px-10 md:bg-background/90 lg:bg-transparent lg:px-16 xl:px-24">
 
           {/* Decorative background */}
           <div className="absolute -left-32 -top-32 h-72 w-72 rounded-full bg-primary/5 blur-3xl" />
@@ -87,7 +87,7 @@ export default function Home() {
           ==================================================== */}
           <section className="absolute inset-0 z-10 flex items-center px-6 sm:px-10 lg:px-16 xl:px-24">
 
-            <div className="max-w-xl">
+            <div className="w-full max-w-lg lg:max-w-xl">
 
               {/* Small label */}
               <div className="mb-7 flex items-center gap-3">
@@ -98,26 +98,24 @@ export default function Home() {
                 </p>
               </div>
 
-
               {/* Main Heading */}
-              <h1 className="font-heading text-5xl leading-[0.95] text-foreground sm:text-6xl md:text-7xl xl:text-8xl">
-                A taste worth
+              <h1 className="font-heading text-4xl leading-[0.98] text-foreground sm:text-5xl md:text-7xl xl:text-8xl">
+                A taste worth 
 
                 <span className="font-logo mt-3 block text-primary">
                   staying for.
                 </span>
               </h1>
 
-
               {/* Description */}
-              <p className="mt-8 max-w-md text-base leading-8 text-muted-foreground sm:text-lg">
+              <p className="mt-6 lg:max-w-md text-base leading-7 text-muted-foreground sm:mt-8 sm:text-lg sm:leading-8">
                 A modern dining experience where bold flavours, carefully
                 crafted dishes, and beautiful moments come together.
               </p>
 
 
               {/* CTA */}
-              <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+              <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:items-center">
 
                 <Link
                   href="/customer"
@@ -134,7 +132,7 @@ export default function Home() {
 
                 <Link
                   href="/customer/track"
-                  className="group inline-flex items-center justify-center gap-2 px-4 py-3 text-sm font-semibold text-foreground transition-colors hover:text-primary"
+                  className="group inline-flex items-center justify-center border-2 border-background rounded-full gap-2 px-4 py-3 text-sm font-semibold text-foreground hover:text-primary transition-all duration-300 hover:translate-y-1 hover:shadow-xl"
                 >
                   Track your order
 
@@ -148,7 +146,7 @@ export default function Home() {
 
 
               {/* Small Feature */}
-              <div className="mt-14 flex items-center gap-4 border-t border-border pt-7">
+              <div className="mt-10 flex items-center gap-4 border-t border-border pt-6 sm:mt-14 sm:pt-7">
 
                 <div className="flex h-11 w-11 items-center justify-center rounded-full bg-secondary text-primary">
                   <Utensils size={19} />
@@ -199,8 +197,7 @@ export default function Home() {
         {/* =====================================================
             RIGHT SIDE — RESTAURANT IMAGE
         ====================================================== */}
-        <div className="relative hidden min-h-screen overflow-hidden lg:block">
-
+        <div className="absolute inset-0 z-0 hidden min-h-screen overflow-hidden md:block lg:relative lg:inset-auto lg:z-auto">
           <Image
             src="/images/bg.png"
             alt="Lynn's Kitchen restaurant interior"
