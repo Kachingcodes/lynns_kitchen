@@ -7,21 +7,25 @@ export async function GET() {
       SELECT
         current_database() AS database,
         current_user AS user,
-        current_schema() AS schema
+        inet_server_addr() AS server
     `);
 
-    const dbUrl = new URL(process.env.DATABASE_URL);
+    const url = process.env.DATABASE_URL;
 
     return NextResponse.json({
+      envHost: url
+        ? new URL(url).hostname
+        : "DATABASE_URL is missing",
       database: result.rows[0].database,
       user: result.rows[0].user,
-      schema: result.rows[0].schema,
-      host: dbUrl.hostname,
+      server: result.rows[0].server,
     });
   } catch (error) {
-    return NextResponse.json(
-      { error: error.message },
-      { status: 500 }
-    );
+    return NextResponse.json({
+      error: error.message,
+      envHost: process.env.DATABASE_URL
+        ? new URL(process.env.DATABASE_URL).hostname
+        : "DATABASE_URL is missing",
+    });
   }
 }
