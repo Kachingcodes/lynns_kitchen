@@ -9,6 +9,7 @@ import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { OrderProvider } from "./context/OrderContext";
+import { Analytics } from "@vercel/analytics/next";
 
 
 const manrope = Manrope({
@@ -53,6 +54,7 @@ export default function RootLayout({ children }) {
       <body className="min-h-full flex flex-col">
         <OrderProvider>
           {children}
+          <Analytics/>
         </OrderProvider>
 
         <ToastContainer
