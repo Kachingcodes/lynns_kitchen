@@ -12,7 +12,7 @@ export default function MenuPage({ searchQuery }) {
   useEffect(() => {
     const fetchMenu = async () => {
       try {
-        const restaurantId = 1;
+        const restaurantId = 3;
 
         const response = await fetch("/api/menu?restaurantId=3");
 
