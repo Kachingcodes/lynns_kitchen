@@ -17,7 +17,7 @@ import {
   Star,
   Receipt,
   Sparkles,
-  ChefHat,
+  ConciergeBell,
   PartyPopper,
 } from "lucide-react";
 
@@ -428,16 +428,9 @@ export default function OrderPage({ params }) {
       }
 
 
-      /*
-        SHOW SUCCESS SCREEN
-      */
+      /*  SHOW SUCCESS SCREEN  */
 
       setRatingSubmitted(true);
-
-
-      /*
-        CONFETTI
-      */
 
       confetti({
 
@@ -450,11 +443,6 @@ export default function OrderPage({ params }) {
         },
 
       });
-
-
-      /*
-        EXTRA CONFETTI
-      */
 
       setTimeout(() => {
 
@@ -492,10 +480,6 @@ export default function OrderPage({ params }) {
       }, 300);
 
 
-      /*
-        REDIRECT HOME
-      */
-
       setTimeout(() => {
 
         router.push("/customer");
@@ -517,7 +501,6 @@ export default function OrderPage({ params }) {
     }
 
   };
-
 
 
   /*
@@ -604,31 +587,32 @@ export default function OrderPage({ params }) {
 
       <header className="border-b border-border bg-card/80 backdrop-blur">
 
-        <div className="mx-auto flex max-w-4xl items-center justify-between px-5 py-5 sm:px-6">
+        <div className="mx-auto flex max-w-4xl items-center justify-between gap-2 px-3 py-3 sm:px-6 sm:py-5">
 
-          <div className="flex items-center gap-3">
+          {/* Restaurant Info */}
+          <div className="flex min-w-0 items-center gap-2 sm:gap-3">
 
-            <div className="relative flex h-14 w-16 items-center justify-center rounded-full bg-primary text-white">
+            <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary text-white sm:h-14 sm:w-16">
 
               <Image
                 src="/images/lynn.png"
-                alt="Lynn"
+                alt="Lynn's Kitchen"
                 width={100}
                 height={100}
                 priority
                 sizes="48px"
-                className="object-contain rounded-full"
+                className="rounded-full object-contain"
               />
+
             </div>
 
-            <div>
+            <div className="min-w-0">
 
-              <p className="text-xs font-medium uppercase tracking-wider text-foreground">
+              <p className="truncate text-[10px] font-medium uppercase tracking-wider text-foreground sm:text-xs">
                 Lynn's Kitchen
               </p>
 
-
-              <h1 className="font-semibold text-muted-foreground">
+              <h1 className="truncate text-sm font-semibold text-muted-foreground sm:text-base">
                 Order #{order.id}
               </h1>
 
@@ -636,37 +620,68 @@ export default function OrderPage({ params }) {
 
           </div>
 
-          <div className="rounded-full bg-secondary px-4 py-2 text-sm font-semibold">
-            Table {order.table_number}
-          </div>
 
-          <div className="flex items-center rounded-full  bg-background p-1 backdrop-blur-md">
+          {/* Right Side */}
+          <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
 
-            <Link
-              href={`/order/${order.id}`}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
-                activeBtn === "customer"
-                  ? "bg-primary text-white shadow-lg"
-                  : "text-black hover:text-foreground"
-              }`}
-            >
-              Customer
-            </Link>
+            {/* Table */}
+            <div className="rounded-full bg-secondary px-3 py-1.5 text-xs font-semibold sm:px-4 sm:py-2 sm:text-sm">
+              Table {order.table_number}
+            </div>
 
-            <Link
-              href="/waiter"
-              onClick={() => setActiveBtn("waiter")}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
-                activeBtn === "waiter"
-                  ? "bg-primary text-white shadow-lg"
-                  : "text-black hover:text-foreground"
-              }`}
-            >
-              Waiter
-            </Link>
+
+            {/* Customer / Waiter Toggle */}
+            <div className="flex items-center rounded-full bg-background p-1 backdrop-blur-md">
+
+              {/* Customer */}
+              <Link
+                href={`/order/${order.id}`}
+                onClick={() => setActiveBtn("customer")}
+                aria-label="Customer"
+                title="Customer"
+                className={`flex items-center justify-center rounded-full px-2.5 py-2 text-sm font-medium transition-all duration-300 sm:px-4 ${
+                  activeBtn === "customer"
+                    ? "bg-primary text-white shadow-lg"
+                    : "text-black hover:text-foreground"
+                }`}
+              >
+
+                <User className="h-4 w-4 sm:hidden" />
+
+                <span className="hidden sm:block">
+                  Customer
+                </span>
+
+              </Link>
+
+
+              {/* Waiter */}
+              <Link
+                href="/waiter"
+                onClick={() => setActiveBtn("waiter")}
+                aria-label="Waiter"
+                title="Waiter"
+                className={`flex items-center justify-center rounded-full px-2.5 py-2 text-sm font-medium transition-all duration-300 sm:px-4 ${
+                  activeBtn === "waiter"
+                    ? "bg-primary text-white shadow-lg"
+                    : "text-black hover:text-foreground"
+                }`}
+              >
+
+                <ConciergeBell className="h-4 w-4 sm:hidden" />
+
+                <span className="hidden sm:block">
+                  Waiter
+                </span>
+
+              </Link>
+
+            </div>
+
           </div>
 
         </div>
+
       </header>
 
       <div className="mx-auto max-w-4xl px-5 py-8 sm:px-6 sm:py-12">
@@ -688,14 +703,14 @@ export default function OrderPage({ params }) {
 
               {!ratingSubmitted ? (
 
-                <div className="p-6 text-center sm:p-4 lg:p-8">
+                <div className="p-4 lg:p-6 text-center sm:p-4 lg:p-8">
 
 
                   {/* SUCCESS ICON */}
 
-                  <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-green-500/10">
+                  <div className="mx-auto flex h-12 w-12 lg:h-20 lg:w-20 items-center justify-center rounded-full bg-green-500/10">
 
-                    <CheckCircle2 className="h-10 w-10 text-green-600" />
+                    <CheckCircle2 className="h-6 w-6 lg:h-10 lg:w-10 text-green-600" />
 
                   </div>
 
@@ -708,14 +723,14 @@ export default function OrderPage({ params }) {
 
                   </p>
 
-                  <h2 className="mt-3 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+                  <h2 className="mt-3 text-xl lg:text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
 
                     Payment has been made
 
                   </h2>
 
 
-                  <p className="mx-auto mt-3 max-w-md text-muted-foreground">
+                  <p className="mx-auto mt-3 max-w-md text-sm lg:text-md text-muted-foreground">
 
                     Thank you for dining with us.
                     We hope you enjoyed your experience.
@@ -724,7 +739,7 @@ export default function OrderPage({ params }) {
 
                   {/* DIVIDER */}
 
-                  <div className="mx-auto my-10 max-w-md border-t border-border" />
+                  <div className="mx-auto my-6 lg:my-10 max-w-md border-t border-border" />
 
 
                   {/* RATING */}
@@ -758,7 +773,7 @@ export default function OrderPage({ params }) {
 
                     {/* STARS */}
 
-                    <div className="mt-7 flex justify-center gap-2 sm:gap-3">
+                    <div className="mt-4 lg:mt-7 flex justify-center gap-2 sm:gap-3">
 
 
                       {[1, 2, 3, 4, 5].map((star) => (
@@ -771,7 +786,7 @@ export default function OrderPage({ params }) {
                         >
 
                           <Star
-                            className={`h-9 w-9 transition sm:h-10 sm:w-10 ${
+                            className={`h-8 w-8 lg:h-9 lg:w-9 transition sm:h-10 sm:w-10 ${
                               star <= rating
                                 ? "fill-yellow-400 text-yellow-400"
                                 : "text-muted-foreground/20 group-hover:text-yellow-400/50"
@@ -791,7 +806,7 @@ export default function OrderPage({ params }) {
 
                     {rating > 0 && (
 
-                      <p className="mt-5 font-semibold text-primary">
+                      <p className="mt-4 lg:mt-5 font-semibold text-primary">
 
                         {rating === 1 &&
                           "We're sorry your experience wasn't great."}
@@ -827,7 +842,7 @@ export default function OrderPage({ params }) {
 
                       rows={4}
 
-                      className="mt-7 w-full resize-none rounded-2xl border border-border bg-background px-4 py-4 text-sm outline-none transition focus:border-primary"
+                      className="mt-5 lg:mt-7 w-full resize-none rounded-2xl border border-border bg-background px-4 py-4 text-sm outline-none transition focus:border-primary"
                     />
 
 
@@ -1051,7 +1066,7 @@ export default function OrderPage({ params }) {
                       </p>
 
 
-                      <p className="mt-1 text-2xl font-bold text-foreground">
+                      <p className="mt-1 text-xl lg:text-2xl font-bold text-foreground">
 
                         ₦{totalAmount.toLocaleString()}
 
@@ -1061,7 +1076,7 @@ export default function OrderPage({ params }) {
                     </div>
 
 
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-green-500/10">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-green-500/10">
 
                       <CheckCircle2 className="h-6 w-6 text-green-600" />
 
