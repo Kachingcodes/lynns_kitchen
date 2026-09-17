@@ -1186,7 +1186,7 @@ export default function OrderPage({ params }) {
 
                   <>
 
-                    <div className="mt-3 lg:mt-5 text-4xl lg:text-6xl font-bold tracking-tight text-primary sm:text-8xl">
+                    <div className="mt-3 lg:mt-5 text-5xl lg:text-6xl font-bold tracking-tight text-primary sm:text-8xl">
 
                       {order.status === "preparing"
 
