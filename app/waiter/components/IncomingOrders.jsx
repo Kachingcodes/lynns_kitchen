@@ -25,11 +25,11 @@ export default function IncomingOrders({
       <div className="flex items-end justify-between">
 
         <div>
-          <h2 className="text-2xl font-semibold text-foreground">
+          <h2 className="text-2xl lg:px-0 px-1 font-semibold text-foreground">
             All Orders
           </h2>
 
-          <p className="mt-1 text-sm text-muted-foreground">
+          <p className="mt-1 text-sm px-1 lg:px-0 text-muted-foreground">
             View and manage all customer orders
           </p>
         </div>

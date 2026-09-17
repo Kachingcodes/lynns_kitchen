@@ -100,6 +100,15 @@ export default function MenuNav({
         })}
       </nav>
 
+      {/* Mobile Scroll Indicator */}
+        <div className="flex items-center justify-end gap-1 px-5 pb-2 sm:hidden">
+          <span className="text-[10px] font-medium text-muted-foreground">
+            Scroll for more
+          </span>
+
+          <ArrowRight className="h-3 w-3 text-muted-foreground" />
+        </div>
+
       {/* Order Card — Desktop Only */}
       {totalItems > 0 && (
         <div className="mt-4 hidden px-6 lg:block">

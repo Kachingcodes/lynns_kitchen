@@ -30,8 +30,8 @@ export default function MenuInfo({
   return (
     <section className="flex-1 px-6 py-6 lg:px-10">
       {/* Section Heading */}
-      <div className="mb-8 flex items-center justify-between">
-        <p className="text-3xl font-semibold tracking-tight text-foreground">
+      <div className="mb-4 lg:mb-8 flex items-center justify-between">
+        <p className="text-xl lg:text-3xl font-semibold tracking-tight text-foreground">
           {title}
         </p>
 

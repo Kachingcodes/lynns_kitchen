@@ -113,7 +113,7 @@ const closeRatingModal = () => {
 
       <WaiterHeader />
 
-      <div className="mx-auto max-w-7xl px-6 py-8">
+      <div className="mx-auto max-w-7xl px-4 lg:px-6 py-6 lg:py-8">
 
         <WaiterStats orders={orders} />
 

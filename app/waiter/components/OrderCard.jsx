@@ -156,7 +156,7 @@ export default function OrderCard({
   {/* HEADER */}
   {/* ========================================= */}
 
-  <div className="flex items-center justify-between px-6 py-5">
+  <div className="flex items-center justify-between px-4 lg:px-5 py-4 lg:py-5">
 
     <div>
       <Link
@@ -209,7 +209,7 @@ export default function OrderCard({
   {/* MAIN ORDER IDENTITY */}
   {/* ========================================= */}
 
-  <div className="border-y border-border bg-secondary/20 px-6 py-7">
+  <div className="border-y border-border bg-secondary/20 px-4 lg:px-5 py-5 lg:py-7">
 
     <div className="flex items-center justify-between">
 
@@ -223,7 +223,7 @@ export default function OrderCard({
 
         <div className="mt-1 flex items-baseline gap-2">
 
-          <span className="text-5xl font-bold tracking-tight text-foreground">
+          <span className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground">
             {order.table_number}
           </span>
 
@@ -283,7 +283,7 @@ export default function OrderCard({
   {/* ORDER PROGRESS */}
   {/* ========================================= */}
 
-  <div className="px-6 py-6">
+  <div className="px-4 lg:px-5 py-4 lg:py-5">
 
     <div className="flex items-center justify-between">
 
@@ -342,7 +342,7 @@ export default function OrderCard({
 
     {/* PROGRESS LINE */}
 
-    <div className="mt-5 h-2 overflow-hidden rounded-full bg-secondary">
+    <div className="mt-4 lg:mt-5 h-2 overflow-hidden rounded-full bg-secondary">
 
       <div
         className={`h-full rounded-full transition-all duration-500 ${
@@ -364,7 +364,7 @@ export default function OrderCard({
   {/* ASSIGNMENT + FEEDBACK */}
   {/* ========================================= */}
 
-  <div className="border-t border-border px-6">
+  <div className="border-t border-border px-4 lg:px-5">
 
     {/* WAITER */}
 
@@ -479,7 +479,7 @@ export default function OrderCard({
   {/* ACTIONS */}
   {/* ========================================= */}
 
-  <div className="border-t border-border bg-secondary/10 p-4">
+  <div className="border-t border-border bg-secondary/10 p-4 lg:px-5">
 
     <div className="flex items-center gap-3">
 

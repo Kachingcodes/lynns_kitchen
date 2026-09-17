@@ -1,14 +1,19 @@
 "use client";
 
-import { Search, ShoppingBag, X } from "lucide-react";
+import {
+  Search,
+  ShoppingBag,
+  X,
+  UserRound,
+  ConciergeBell,
+} from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { useOrder } from "../context/OrderContext";
 import Link from "next/link";
 
-
 export default function Header({ onSearch }) {
-  const { totalItems, openCart } = useOrder();
+  const { totalItems } = useOrder();
   const [activeBtn, setActiveBtn] = useState("customer");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -25,31 +30,35 @@ export default function Header({ onSearch }) {
   };
 
   return (
-    <header className="relative flex items-center justify-between border-b bg-background p-4 overflow-hidden">
+    <header className="relative flex items-center justify-between overflow-hidden border-b bg-background p-3 sm:p-4">
 
       {/* Restaurant Info */}
-      <div className="flex items-center gap-2 px-2">
+      <div className="flex min-w-0 items-center gap-2 px-1 sm:px-2">
+
         <Image
           src="/images/lynn.png"
-          alt="Meks Restaurant"
+          alt="Lynn's Kitchen"
           width={60}
           height={50}
           priority
           sizes="60px"
-          className=" rounded-full"
+          className="shrink-0 rounded-full"
         />
 
-        <h1 className="flex flex-col text-xl font-semibold text-foreground">
-          Lynn's Kitchen
+        <h1 className="flex min-w-0 flex-col truncate text-md font-semibold text-foreground lg:text-xl">
+          <span className="truncate">
+            Lynn's Kitchen
+          </span>
 
-          <span className="text-sm text-primary">
+          <span className="hidden text-sm font-normal text-primary sm:block">
             Fine dining
           </span>
         </h1>
+
       </div>
 
       {/* Actions */}
-      <div className="flex items-center gap-2 px-2">
+      <div className="flex shrink-0 items-center gap-1 lg:gap-2">
 
         {/* Search Button */}
         <button
@@ -75,39 +84,54 @@ export default function Header({ onSearch }) {
           )}
         </Link>
 
-         {/* Customer / Waiter Toggle */}
-          <div className="flex items-center rounded-full border border-primary bg-foreground/5 p-1 backdrop-blur-md">
+        {/* Customer / Waiter Toggle */}
+        <div className="flex items-center rounded-full border border-primary bg-foreground/5 p-1 backdrop-blur-md">
 
-            <Link
-              href={`/customer`}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
-                activeBtn === "customer"
-                  ? "bg-primary text-white shadow-lg"
-                  : "text-black hover:text-foreground"
-              }`}
-            >
+          {/* Customer */}
+          <Link
+            href="/customer"
+            onClick={() => setActiveBtn("customer")}
+            aria-label="Customer"
+            title="Customer"
+            className={`flex items-center justify-center rounded-full px-3 py-2 text-sm font-medium transition-all duration-300 sm:px-4 ${
+              activeBtn === "customer"
+                ? "bg-primary text-white shadow-lg"
+                : "text-black hover:text-foreground"
+            }`}
+          >
+            <UserRound size={17} className="sm:hidden" />
+
+            <span className="hidden sm:block">
               Customer
-            </Link>
+            </span>
+          </Link>
 
-            <Link
-              href="/waiter"
-              onClick={() => setActiveBtn("waiter")}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
-                activeBtn === "waiter"
-                  ? "bg-primary text-white shadow-lg"
-                  : "text-black hover:bg-gray-200"
-              }`}
-            >
+          {/* Waiter */}
+          <Link
+            href="/waiter"
+            onClick={() => setActiveBtn("waiter")}
+            aria-label="Waiter"
+            title="Waiter"
+            className={`flex items-center justify-center rounded-full px-3 py-2 text-sm font-medium transition-all duration-300 sm:px-4 ${
+              activeBtn === "waiter"
+                ? "bg-primary text-white shadow-lg"
+                : "text-black hover:bg-gray-200"
+            }`}
+          >
+            <ConciergeBell size={17} className="sm:hidden" />
+
+            <span className="hidden sm:block">
               Waiter
-            </Link>
+            </span>
+          </Link>
 
-          </div> 
+        </div>
 
       </div>
 
       {/* Sliding Search */}
       <div
-        className={`absolute inset-y-0 right-0 z-20 flex w-[350px] items-center border-l bg-background px-4 shadow-lg transition-transform duration-300 ease-in-out ${
+        className={`absolute inset-y-0 right-0 z-20 flex w-full items-center border-l bg-background px-4 shadow-lg transition-transform duration-300 ease-in-out sm:w-[350px] ${
           isSearchOpen
             ? "translate-x-0"
             : "translate-x-full"
@@ -140,7 +164,6 @@ export default function Header({ onSearch }) {
           </button>
 
         </div>
-
       </div>
 
     </header>

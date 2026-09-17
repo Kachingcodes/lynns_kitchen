@@ -5,7 +5,7 @@ export default function MenuIntro() {
     return (
 
 <div className="flex flex-col px-6 py-12">
-    <h1 className="text-3xl font-semibold tracking-tight text-foreground">
+    <h1 className="text-xl lg:text-3xl font-semibold tracking-tight text-foreground">
         Good Evening, what would you like to have tonight?
     </h1>
 
