@@ -3,17 +3,54 @@
 import {
   createContext,
   useContext,
+  useEffect,
   useMemo,
   useState,
 } from "react";
 
 const OrderContext = createContext(null);
 
+const STORAGE_KEY = "lynns-kitchen-order";
+
 export function OrderProvider({ children }) {
   const [items, setItems] = useState([]);
-
-  // Cart drawer state
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  // Load saved cart ONCE when the app starts
+  useEffect(() => {
+    try {
+      const savedOrder = localStorage.getItem(STORAGE_KEY);
+
+      if (savedOrder) {
+        const parsedOrder = JSON.parse(savedOrder);
+
+        if (Array.isArray(parsedOrder)) {
+          setItems(parsedOrder);
+        }
+      }
+    } catch (error) {
+      console.error("Failed to load saved order:", error);
+    } finally {
+      setIsHydrated(true);
+    }
+  }, []);
+
+  // Save cart only AFTER the initial load has completed
+  useEffect(() => {
+    if (!isHydrated) {
+      return;
+    }
+
+    try {
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(items)
+      );
+    } catch (error) {
+      console.error("Failed to save order:", error);
+    }
+  }, [items, isHydrated]);
 
   const addToOrder = (item) => {
     setItems((currentItems) => {
@@ -104,13 +141,13 @@ export function OrderProvider({ children }) {
     }
 
     return Math.max(
-      ...items.map((item) =>
-        parseInt(String(item.prepTime), 10) || 0
+      ...items.map(
+        (item) =>
+          parseInt(String(item.prepTime), 10) || 0
       )
     );
   }, [items]);
 
-  // Cart controls
   const openCart = () => {
     setIsCartOpen(true);
   };
@@ -124,19 +161,16 @@ export function OrderProvider({ children }) {
   };
 
   const value = {
-    // Order data
     items,
     totalItems,
     totalPrice,
     totalPrepTime,
 
-    // Order actions
     addToOrder,
     removeFromOrder,
     clearOrder,
     getQuantity,
 
-    // Cart drawer
     isCartOpen,
     openCart,
     closeCart,
