@@ -79,7 +79,7 @@ export default function MenuNav({
                   rounded-full
                   px-1.5
                   py-0.5
-                  text-[10px]
+                  text-xs
                   font-semibold
                   lg:min-w-7
                   lg:px-2
@@ -102,7 +102,7 @@ export default function MenuNav({
 
       {/* Mobile Scroll Indicator */}
         <div className="flex items-center justify-end gap-1 px-5 pb-2 sm:hidden">
-          <span className="text-[10px] font-medium text-muted-foreground">
+          <span className="text-xs font-medium text-muted-foreground">
             Scroll for more
           </span>
 
