@@ -200,7 +200,6 @@ export default function TakeOrderModal({
 
           </div>
 
-
           <button
             type="button"
             onClick={onClose}
@@ -214,7 +213,7 @@ export default function TakeOrderModal({
 
 
         {/* Waiters */}
-        <div className="mt-6">
+        <div className="mt-4 lg:mt-6">
 
           <label className="mb-3 block text-sm font-medium">
             Select your name
@@ -235,7 +234,7 @@ export default function TakeOrderModal({
 
           ) : (
 
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid max-h-[300px] grid-cols-1 lg:grid-cols-2 gap-2 overflow-y-auto sm:max-h-none sm:overflow-visible hide-scrollbar">
 
               {waiters.map((waiter) => {
 

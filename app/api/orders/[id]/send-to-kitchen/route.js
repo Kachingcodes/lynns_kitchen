@@ -83,6 +83,7 @@ export async function PATCH(request, { params }) {
     const foodCategories = [
       "main",
       "starter",
+      "sides",
       "dessert",
     ];
 

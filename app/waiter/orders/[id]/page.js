@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-
+import { toast } from "react-toastify";
 import {
   ArrowLeft,
   Clock,
@@ -184,6 +184,7 @@ export default function ManageOrderPage() {
   const foodCategories = [
     "main",
     "starter",
+    "sides",
     "dessert",
   ];
 
@@ -294,7 +295,7 @@ const hasRequiredStaffAssigned =
     } catch (error) {
       console.error(error);
 
-      alert(error.message);
+      toast.error(error.message);
 
     } finally {
       setSendingToKitchen(false);
@@ -316,8 +317,8 @@ const hasRequiredStaffAssigned =
     newStatus === "preparing" &&
     !hasRequiredStaffAssigned
   ) {
-    alert(
-      "Please assign the required chef and/or bartender before changing the order status."
+    toast.error(
+      "Please assign the required chef and/or bartender."
     );
 
     return;
@@ -340,8 +341,8 @@ const hasRequiredStaffAssigned =
     newStatus === "preparing" &&
     order.status === "pending"
   ) {
-    alert(
-      "Please use Send to Kitchen to start preparing this order."
+    toast.error(
+      "Please use Send to Kitchen."
     );
 
     return;
@@ -389,7 +390,7 @@ const hasRequiredStaffAssigned =
   } catch (error) {
     console.error(error);
 
-    alert(error.message);
+    toast.error(error.message);
 
   } finally {
     setUpdatingStatus(false);
@@ -573,8 +574,7 @@ const formatCountdown = (seconds) => {
 
       <div className="border-b border-border bg-card">
 
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
-
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 lg:px-6 py-5">
 
           {/* Left */}
 
@@ -583,12 +583,11 @@ const formatCountdown = (seconds) => {
             <button
               type="button"
               onClick={() => router.back()}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-border transition hover:bg-muted"
+              className="flex h-8 w-8 lg:h-10 lg:w-10 items-center justify-center rounded-full border border-border transition hover:bg-muted"
               aria-label="Go back"
             >
               <ArrowLeft size={18} />
             </button>
-
 
             <div>
 
@@ -596,7 +595,7 @@ const formatCountdown = (seconds) => {
                 Manage Order
               </p>
 
-              <h1 className="text-2xl font-semibold text-foreground">
+              <h1 className="text-lg lg:text-2xl font-semibold text-foreground">
                 Order #{order.id}
               </h1>
 
@@ -623,14 +622,13 @@ const formatCountdown = (seconds) => {
                     value={status}
                 >
 
-                    {status}
+                  {status}
 
                 </option>
 
                 ))}
 
             </select>
-
 
             {order.status === "preparing" && (
 
@@ -659,27 +657,24 @@ const formatCountdown = (seconds) => {
       </div>
 
 
-
-      <div className="mx-auto max-w-7xl px-6 py-8">
-
+      <div className="mx-auto max-w-7xl px-4 lg:px-6 py-6 lg:py-8">
 
         {/* TOP INFORMATION */}
 
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-4 xl:gap-6 grid-cols-2 xl:grid-cols-4">
 
 
           {/* Customer */}
 
-          <div className="rounded-2xl border border-border bg-card p-5">
+          <div className="rounded-2xl border border-border bg-card p-4 lg:p-5">
 
             <div className="flex items-center gap-3">
 
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-muted">
+              <div className="flex h-9 w-9 lg:h-11 lg:w-11 items-center justify-center rounded-xl bg-muted">
 
-                <User size={20} />
+                <User size={18} />
 
               </div>
-
 
               <div>
 
@@ -698,19 +693,17 @@ const formatCountdown = (seconds) => {
           </div>
 
 
-
           {/* Table */}
 
-          <div className="rounded-2xl border border-border bg-card p-5">
+          <div className="rounded-2xl border border-border bg-card p-4 lg:p-5">
 
             <div className="flex items-center gap-3">
 
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-muted">
+              <div className="flex flex h-9 w-9 lg:h-11 lg:w-11 items-center justify-center rounded-xl bg-muted">
 
-                <UtensilsCrossed size={20} />
+                <UtensilsCrossed size={18} />
 
               </div>
-
 
               <div>
 
@@ -729,23 +722,22 @@ const formatCountdown = (seconds) => {
           </div>
 
 
-
           {/* Estimated Time */}
 
-          <div className="rounded-2xl border border-primary bg-primary p-5 text-primary-foreground">
+          <div className="rounded-2xl border border-primary bg-primary p-4 lg:p-5 text-primary-foreground">
 
             <div className="flex items-center gap-3">
 
-              <Clock size={24} />
+              <Clock size={18} />
 
 
               <div>
 
-                <p className="text-sm opacity-80">
+                <p className="text-xs opacity-80">
                   Estimated Prep Time
                 </p>
 
-                <p className="mt-1 text-3xl font-bold">
+                <p className="mt-1 text-xl lg:text-3xl font-bold">
                   {order.estimated_wait_minutes} min
                 </p>
 
@@ -755,17 +747,15 @@ const formatCountdown = (seconds) => {
 
           </div>
 
-
-
           {/* Items */}
 
-          <div className="rounded-2xl border border-border bg-card p-5">
+          <div className="rounded-2xl border border-border bg-card p-4 lg:p-5">
 
             <p className="text-xs text-muted-foreground">
               Total Items
             </p>
 
-            <p className="mt-2 text-3xl font-bold text-foreground">
+            <p className="mt-2 text-2xl lg:text-3xl font-bold text-foreground">
 
               {order.items.reduce(
                 (total, item) =>
@@ -780,12 +770,9 @@ const formatCountdown = (seconds) => {
 
         </div>
 
-
-
         {/* STAFF ASSIGNMENT */}
 
         <section className="mt-8">
-
 
           {/* Section Header */}
 
@@ -828,10 +815,7 @@ const formatCountdown = (seconds) => {
 
           </div>
 
-
-
-          <div className="grid gap-6 md:grid-cols-2">
-
+          <div className="grid gap-6 grid-cols-1 lg:grid-cols-2">
 
             {/* CHEF */}
 
@@ -846,7 +830,6 @@ const formatCountdown = (seconds) => {
                     <ChefHat size={21} />
 
                   </div>
-
 
                   <div>
 
