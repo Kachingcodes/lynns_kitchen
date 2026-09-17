@@ -684,7 +684,7 @@ export default function OrderPage({ params }) {
 
       </header>
 
-      <div className="mx-auto w-full max-w-4xl px-4 py-5 sm:px-6 sm:py-12">
+      <div className="mx-auto w-full max-w-4xl px-4 py-5 lg:px-6 lg:py-12">
 
 
         {/* ================= PAYMENT SUCCESS ================= */}
@@ -946,7 +946,6 @@ export default function OrderPage({ params }) {
 
             <aside className="lg:sticky lg:top-6">
 
-
               <div className="overflow-hidden rounded-[2rem] border border-border bg-card shadow-sm">
 
 
@@ -1098,7 +1097,7 @@ export default function OrderPage({ params }) {
 
             {/* STATUS HERO */}
 
-            <section className="relative overflow-hidden rounded-[2rem] border border-border bg-card p-7 shadow-sm sm:p-12">
+            <section className="relative overflow-hidden rounded-[2rem] border border-border bg-card p-6 shadow-sm lg:p-12">
 
               <div className="absolute right-0 top-0 h-40 w-40 rounded-full bg-primary/5 blur-3xl" />
 
@@ -1380,8 +1379,6 @@ export default function OrderPage({ params }) {
               ))}
 
             </div>
-
-
 
             {/* TOTAL */}
 
