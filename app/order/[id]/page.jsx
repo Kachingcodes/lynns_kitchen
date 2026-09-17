@@ -684,7 +684,7 @@ export default function OrderPage({ params }) {
 
       </header>
 
-      <div className="mx-auto max-w-4xl px-5 py-8 sm:px-6 sm:py-12">
+      <div className="mx-auto w-full max-w-4xl px-4 py-5 sm:px-6 sm:py-12">
 
 
         {/* ================= PAYMENT SUCCESS ================= */}
@@ -703,12 +703,12 @@ export default function OrderPage({ params }) {
 
               {!ratingSubmitted ? (
 
-                <div className="p-4 lg:p-6 text-center sm:p-4 lg:p-8">
+                <div className="p-4 text-center sm:p-6 lg:p-8">
 
 
                   {/* SUCCESS ICON */}
 
-                  <div className="mx-auto flex h-12 w-12 lg:h-20 lg:w-20 items-center justify-center rounded-full bg-green-500/10">
+                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-500/10 sm:h-20 sm:w-20">
 
                     <CheckCircle2 className="h-6 w-6 lg:h-10 lg:w-10 text-green-600" />
 
@@ -1107,23 +1107,23 @@ export default function OrderPage({ params }) {
 
                 {/* ICON */}
 
-                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-primary/10 text-primary">
+                <div className="mx-auto flex h-12 w-12 lg:h-20 lg:w-20 items-center justify-center rounded-3xl bg-primary/10 text-primary">
 
                   {order.status === "preparing" ? (
 
-                    <ChefHat className="h-10 w-10" />
+                    <ChefHat className="h-8 w-8 lg:h-10 lg:w-10" />
                   
                   ) : order.status === "ready" ? (
 
-                    <Sparkles className="h-10 w-10 text-orange-500"/>
+                    <Sparkles className="h-8 w-8 lg:h-10 lg:w-10 text-orange-500"/>
 
                   ) : order.status === "served" ? (
 
-                    <CheckCircle2 className="h-10 w-10 text-green-600" />
+                    <CheckCircle2 className="h-8 w-8 lg:h-10 lg:w-10 text-green-600" />
 
                   ) : (
 
-                    <Clock className="h-10 w-10" />
+                    <Clock className="h-8 w-8 lg:h-10 lg:w-10" />
 
                   )}
 
@@ -1132,7 +1132,7 @@ export default function OrderPage({ params }) {
 
                 {/* STATUS LABEL */}
 
-                <p className="mt-7 text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                <p className="mt-5 lg:mt-7 text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
 
                   {order.status === "pending" &&
                     "Order Received"}
@@ -1155,7 +1155,7 @@ export default function OrderPage({ params }) {
 
                   <>
 
-                    <h2 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
+                    <h2 className="mt-4 text-2xl lg:text-4xl font-bold tracking-tight sm:text-5xl">
                       Enjoy your meal! 
                     </h2>
 
@@ -1170,7 +1170,7 @@ export default function OrderPage({ params }) {
                 ) : order.status === "ready" ? (
 
                   <>
-                    <h2 className="mt-4 text-4xl font-bold tracking-tight text-orange-500 sm:text-6xl">
+                    <h2 className="mt-4 text-2xl lg:text-4xl font-bold tracking-tight text-orange-500 sm:text-6xl">
 
                       Your Order Is Ready! 
 
@@ -1187,7 +1187,7 @@ export default function OrderPage({ params }) {
 
                   <>
 
-                    <div className="mt-5 text-6xl font-bold tracking-tight text-primary sm:text-8xl">
+                    <div className="mt-3 lg:mt-5 text-4xl lg:text-6xl font-bold tracking-tight text-primary sm:text-8xl">
 
                       {order.status === "preparing"
 
@@ -1211,7 +1211,7 @@ export default function OrderPage({ params }) {
                     </p>
 
 
-                    <p className="mx-auto mt-6 max-w-md text-sm text-muted-foreground">
+                    <p className="mx-auto mt-4 lg:mt-6 max-w-md text-sm text-muted-foreground">
 
                       {order.status === "pending" &&
                         "Your order is waiting to be sent to the kitchen."}
@@ -1230,11 +1230,9 @@ export default function OrderPage({ params }) {
             </section>
 
 
-
             {/* CUSTOMER INFO */}
 
             <section className="mt-6 grid gap-4 sm:grid-cols-2">
-
 
               <div className="rounded-3xl border border-border bg-card p-5">
 
@@ -1246,20 +1244,14 @@ export default function OrderPage({ params }) {
 
                   </div>
 
-
                   <div>
 
                     <p className="text-sm text-muted-foreground">
-
                       Customer
-
                     </p>
 
-
                     <p className="font-semibold">
-
                       {order.customer_name}
-
                     </p>
 
                   </div>
@@ -1267,8 +1259,6 @@ export default function OrderPage({ params }) {
                 </div>
 
               </div>
-
-
 
               <div className="rounded-3xl border border-border bg-card p-5">
 
@@ -1279,7 +1269,6 @@ export default function OrderPage({ params }) {
                     <Utensils className="h-5 w-5 text-primary" />
 
                   </div>
-
 
                   <div>
 
