@@ -1075,24 +1075,19 @@ export default function OrderPage({ params }) {
 
                     </div>
 
-
                     <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-green-500/10">
 
                       <CheckCircle2 className="h-6 w-6 text-green-600" />
 
                     </div>
 
-
                   </div>
 
-
                 </div>
-
 
               </div>
 
             </aside>
-
 
           </section>
 
@@ -1101,14 +1096,11 @@ export default function OrderPage({ params }) {
 
           <>
 
-
             {/* STATUS HERO */}
 
             <section className="relative overflow-hidden rounded-[2rem] border border-border bg-card p-7 shadow-sm sm:p-12">
 
-
               <div className="absolute right-0 top-0 h-40 w-40 rounded-full bg-primary/5 blur-3xl" />
-
 
               <div className="relative text-center">
 

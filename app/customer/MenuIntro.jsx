@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function MenuIntro() {
     return (
 
-<div className="flex flex-col px-6 py-12">
+<div className="flex flex-col px-6 py-8 lg:px-10 lg:py-12">
     <h1 className="text-xl lg:text-3xl font-semibold tracking-tight text-foreground">
         Good Evening, what would you like to have tonight?
     </h1>
